@@ -1,5 +1,5 @@
 var zmq = require('zmq')
-  , client = zmq.socket('push')
+  , client = zmq.socket('pub')
   , port =  GLOBAL.pjconfig.dispatcher.port
   , address =  GLOBAL.pjconfig.dispatcher.address
   , service =  GLOBAL.pjconfig.dispatcher.subscribe;
@@ -7,8 +7,9 @@ var zmq = require('zmq')
 var log4js = require('log4js'),
     logger = log4js.getLogger();
 
-
-client.connect("tcp://" + address + ":" + port);
+client.bind("tcp://" + address + ":" + port, function (err) {
+  if (err) throw err;
+});
 
 
 /**
@@ -22,6 +23,7 @@ module.exports = function () {
           data.data.forEach(function (value){
               var str = JSON.stringify(value)
               client.send(service + value.id + ' ' + str );
+
               logger.debug('dispatcher a message : ' + 'badjs' + ' ' +  str);
           })
 

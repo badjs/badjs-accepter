@@ -26,12 +26,20 @@ if(argv.indexOf('--project') >= 0){
 
 if (cluster.isMaster) {
 
+    var zmq = require(GLOBAL.pjconfig.dispatcher.module)();
 
     var clusters = [];
     // Fork workers.
     for (var i = 0; i < 4; i++) {
         var forkCluster = cluster.fork();
         clusters.push(forkCluster);
+        forkCluster.on("message" , function (data){
+            var json = data;
+            if(json.msg){
+                zmq.process({data : json.msg});
+            }
+
+        })
     }
 
     setTimeout(function (){
@@ -51,7 +59,7 @@ interceptors.forEach(function (value ,key){
     var one = require(value)();
     interceptor.add(one);
 });
-interceptor.add(require(GLOBAL.pjconfig.dispatcher.module)());
+
 
 var forbiddenData = "forbidden";
 
@@ -110,6 +118,7 @@ connect()
 
     // response end with 204
     res.writeHead(204, {
+	'Access-Control-Allow-Origin': '*',
         'Content-Type': 'image/jpeg',
         "Content-length": 0
     });
