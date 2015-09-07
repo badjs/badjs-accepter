@@ -125,14 +125,15 @@ function warnCheck() {
 }
 
 
-modules.exports = {
-    init: function () {
-        setInterval(function () {
-            addList();
-            warnCheck();
-        }, 5 * 60 * 1000);
-        setInterval(function () {
-            clearList();
-        }, 24 * 60 * 60 * 1000);
+addList();
+console.log(countList);
+clearList();
+console.log(countList);
+
+tof.sms('', 'homkerliu', 'test', function (err, result) {
+    if (err) {
+        logger.error('message send is wrong, error is' + err);
+        return;
     }
-}
+    logger.info('send warn is success ,result is ' + result);
+})

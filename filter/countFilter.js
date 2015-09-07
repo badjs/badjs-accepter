@@ -1,5 +1,6 @@
 /**
  * 分id统计数量
+ * @author homkerliu
  * @type {{}|*|countObj}
  */
 var countObj = global.countObj || {};

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "async": "^1.4.2",
     "c-interceptor": "~1.0.2",
     "connect": "^2.25.7",
     "log4js": "^0.6.2",

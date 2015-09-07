@@ -81,6 +81,7 @@ connect()
         logger.debug('===== get a message =====');
 
         var id;
+
         if (isNaN(( id = req.query.id - 0)) || id <= 0 || id >= 9999 || global.projectsId.indexOf(id) < 0) {
 
 
