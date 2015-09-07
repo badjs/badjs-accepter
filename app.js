@@ -118,6 +118,7 @@ connect()
 
     // response end with 204
     res.writeHead(204, {
+	'Access-Control-Allow-Origin': '*',
         'Content-Type': 'image/jpeg',
         "Content-length": 0
     });
