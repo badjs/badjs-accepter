@@ -22,6 +22,9 @@ if (argv.indexOf('--project') >= 0) {
     GLOBAL.pjconfig = require('./project.json');
 }
 
+//global define
+
+global.countObj = {};
 
 // 判断是否是在主线程上
 if (cluster.isMaster) {
