@@ -11,8 +11,10 @@ module.exports = function () {
             //TODO ¹ýÂËºöÂÔ´íÎó
         },
         process: function (data) {
-            console.log(data);
-            countObj[data.id] = isNaN(parseInt(countObj[data.id])) ? 0 : countObj[data.id]++;
+            var data = data.data;
+            data.forEach(function(val){
+                countObj[val.id] = isNaN(parseInt(countObj[val.id])) ? 0 : countObj[val.id]++;
+            });
             global.countObj = countObj;
         }
     }
