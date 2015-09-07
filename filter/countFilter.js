@@ -3,14 +3,15 @@
  * @author homkerliu
  * @type {{}|*|countObj}
  */
-var co.ntObj = global.countObj || {};
-modules.exports = function () {
+var countObj = global.countObj || {};
+
+module.exports = function () {
     return {
-        preProcess: function(data){
+        preProcess: function (data) {
             //TODO ¹ýÂËºöÂÔ´íÎó
         },
         process: function (data) {
-	    console.log(data);
+            console.log(data);
             countObj[data.id] = isNaN(parseInt(countObj[data.id])) ? 0 : countObj[data.id]++;
             global.countObj = countObj;
         }
