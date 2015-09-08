@@ -130,7 +130,7 @@ module.exports = {
     init: function () {
         setInterval(function () {
             addList();
-            //warnCheck();
+            warnCheck();
         }, 5 * 60 * 1000);
         setInterval(function () {
             clearList();
