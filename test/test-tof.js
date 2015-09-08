@@ -130,6 +130,13 @@ console.log(countList);
 console.log(global.countObj);
 clearList();
 console.log(countList);
+
+tof.mail('homkerliu',info,info,null,function(err,result){
+    if (err) {
+        logger.error('message send is wrong, error is' + err);
+    }
+    logger.info('send warn is success ,result is ' + result);
+})
 //console.log(tof);
 /*tof.sms('jameszuo', 'homkerliu;jameszuo', 'test for jamesz', function (err, result) {
     if (err) {

@@ -49,10 +49,15 @@ function sendWarn(id, threshold) {
         tof.sms('jameszuo', userlist, info, function (err, result) {
             if (err) {
                 logger.error('message send is wrong, error is' + err);
-                return;
             }
             logger.info('send warn is success ,result is ' + result);
-        })
+        });
+        tof.mail(userlist,info,info,null,function(err,result){
+            if (err) {
+                logger.error('message send is wrong, error is' + err);
+            }
+            logger.info('send warn is success ,result is ' + result);
+        });
     })
 }
 

@@ -12,12 +12,12 @@ module.exports = function () {
         },
         process: function (data) {
             var data = data.data;
-            data.forEach(function(val){
-                if(!isNaN(parseInt(countObj[val.id]))){
-			countObj[val.id] += 1;
-		}else{
-			countObj[val.id] = 0;
-		}
+            data.forEach(function (val) {
+                if (!isNaN(parseInt(countObj[val.id]))) {
+                    countObj[val.id] += 1;
+                } else {
+                    countObj[val.id] = 0;
+                }
             });
             global.countObj = countObj;
         }
