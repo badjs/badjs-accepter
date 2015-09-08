@@ -13,7 +13,11 @@ module.exports = function () {
         process: function (data) {
             var data = data.data;
             data.forEach(function(val){
-                countObj[val.id] = isNaN(parseInt(countObj[val.id])) ? 0 : countObj[val.id]++;
+                if(!isNaN(parseInt(countObj[val.id]))){
+			countObj[val.id] += 1;
+		}else{
+			countObj[val.id] = 0;
+		}
             });
             global.countObj = countObj;
         }

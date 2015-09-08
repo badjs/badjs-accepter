@@ -17,6 +17,7 @@ var countList = [],
  */
 
 function addList() {
+    console.log(countObj);
     countObj = global.countObj;
     countList.push(countObj);
 }
@@ -45,7 +46,7 @@ function sendWarn(id, threshold) {
                 userlist += ele.loginName + ';'
             });
         }
-        tof.sms('', userlist, info, function (err, result) {
+        tof.sms('jameszuo', userlist, info, function (err, result) {
             if (err) {
                 logger.error('message send is wrong, error is' + err);
                 return;
@@ -125,11 +126,11 @@ function warnCheck() {
 }
 
 
-modules.exports = {
+module.exports = {
     init: function () {
         setInterval(function () {
             addList();
-            warnCheck();
+            //warnCheck();
         }, 5 * 60 * 1000);
         setInterval(function () {
             clearList();

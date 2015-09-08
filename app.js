@@ -8,6 +8,9 @@ var cluster = require("cluster");
 var argv = process.argv.slice(2);
 
 
+var service = require("./service/warnService");
+service.init();
+
 if (argv.indexOf('--debug') >= 0) {
     logger.setLevel('DEBUG');
     global.debug = true;
