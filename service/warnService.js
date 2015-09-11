@@ -10,15 +10,14 @@ var log4js = require('log4js'),
     async = require('async'),
     logger = log4js.getLogger();
 
-var countList = [],
-    countObj = global.countObj||{};
+var countList = [];
 /**
  * 将全局对象添加到队列中
  */
 
 function addList() {
     console.log(countObj);
-    countObj = global.countObj;
+    var countObj = global.countObj;
     countList.push(countObj);
     logger.info('debug');
     logger.info(countObj);
@@ -31,7 +30,6 @@ function addList() {
 
 function clearList() {
     countList = {};
-    countObj = {};
     global.countObj = {};
 }
 /**
@@ -121,8 +119,9 @@ function getThreshold(id, callback) {
  */
 
 function warnCheck() {
-    var historyCountObj = countList.slice(-1)[0] || {};
-    var preHisCountObj = countList.slice(-2, -1)[0] || {};
+    var countObj = global.countObj,
+        historyCountObj = countList.slice(-1)[0] || {},
+        preHisCountObj = countList.slice(-2, -1)[0] || {};
     for (var id in countObj) {
         logger.info('message');
         logger.info(preHisCountObj[id]);
