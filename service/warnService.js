@@ -55,14 +55,13 @@ function clearList() {
 function sendWarn(id, threshold) {
     logger.info('send warn is start');
     getUserList(id, function (result) {
-        var info = 'the error rate rasie up' + threshold*100 + '%';
+        var info = 'Your BadJS project #'+id+'\'s error volume rose ' + threshold*100 + '% [badjs.sng.local]';
         var userlist = '';
         if (result) {
             result.data.forEach(function (ele, index) {
                 userlist += ele.loginName + ';'
             });
         }
-        userlist = userlist + ';jameszuo';
         tof.sms('jameszuo', userlist, info, function (err, result) {
             if (err) {
                 logger.error('message send is wrong, error is' + err);
