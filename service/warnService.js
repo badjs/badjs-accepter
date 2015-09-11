@@ -11,7 +11,7 @@ var log4js = require('log4js'),
     logger = log4js.getLogger();
 
 var countList = [],
-    countObj = {};
+    countObj = global.countObj||{};
 /**
  * 将全局对象添加到队列中
  */
@@ -123,10 +123,11 @@ function getThreshold(id, callback) {
 function warnCheck() {
     var historyCountObj = countList.slice(-1)[0] || {};
     var preHisCountObj = countList.slice(-2, -1)[0] || {};
-    logger.info('message');
-    logger.info(historyCountObj);
-    logger.info(preHisCountObj);
-    for (var id in historyCountObj) {
+    for (var id in countObj) {
+        logger.info('message');
+        logger.info(preHisCountObj[id]);
+        logger.info(historyCountObj[id]);
+        logger.info(countObj[id]);
         var hisNum = preHisCountObj[id] - historyCountObj[id];
         var num = countObj[id] - historyCountObj[id];
         if (isNaN(num - hisNum)) {
