@@ -11,13 +11,27 @@ var log4js = require('log4js'),
     logger = log4js.getLogger();
 
 var countList = [];
+
+/**
+ * 克隆对象
+ * @param myObj
+ * @returns {*}
+ */
+function clone(myObj){
+    if(typeof(myObj) != 'object' || myObj == null) return myObj;
+    var newObj = new Object();
+    for(var i in myObj){
+        newObj[i] = clone(myObj[i]);
+    }
+    return newObj;
+}
+
 /**
  * 将全局对象添加到队列中
  */
 
 function addList() {
-    console.log(countObj);
-    var countObj = global.countObj;
+    var countObj = clone(global.countObj);
     countList.push(countObj);
     logger.info('debug');
     logger.info(countObj);
