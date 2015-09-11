@@ -1,6 +1,6 @@
 /**
  * @author homker
- *Í³¼ÆÎå·ÖÖÓÄÚµÄÊı¾İ±ä»¯Á¿ºÍÎå·ÖÖÓÖ®Ç°µÄÊı¾İ±ä»¯Á¿µÄ±ä»¯·ù¶È
+ *ç»Ÿè®¡äº”åˆ†é’Ÿå†…çš„æ•°æ®å˜åŒ–é‡å’Œäº”åˆ†é’Ÿä¹‹å‰çš„æ•°æ®å˜åŒ–é‡çš„å˜åŒ–å¹…åº¦
  */
 
 
@@ -13,7 +13,7 @@ var log4js = require('log4js'),
 var countList = [];
 
 /**
- * ¿ËÂ¡¶ÔÏó
+ * å…‹éš†å¯¹è±¡
  * @param myObj
  * @returns {*}
  */
@@ -27,7 +27,7 @@ function clone(myObj) {
 }
 
 /**
- * ½«È«¾Ö¶ÔÏóÌí¼Óµ½¶ÓÁĞÖĞ
+ * å°†å…¨å±€å¯¹è±¡æ·»åŠ åˆ°é˜Ÿåˆ—ä¸­
  */
 
 function addList() {
@@ -39,7 +39,7 @@ function addList() {
 }
 
 /**
- * Çå¿Õ»º´æ¶ÓÁĞ
+ * æ¸…ç©ºç¼“å­˜é˜Ÿåˆ—
  */
 
 function clearList() {
@@ -47,7 +47,7 @@ function clearList() {
     global.countObj = {};
 }
 /**
- * ¸ù¾İidÀ´»ñÈ¡ºÍ·¢ËÍ¸æ¾¯
+ * æ ¹æ®idæ¥è·å–å’Œå‘é€å‘Šè­¦
  * @param id
  * @param threshold
  */
@@ -55,7 +55,7 @@ function clearList() {
 function sendWarn(id, threshold) {
     logger.info('send warn is start');
     getUserList(id, function (result) {
-        var info = 'Îå·ÖÖÓÄÚ´íÎóÉÏ±¨Á¿Í¬±ÈÔö·ù³¬¹ı' + threshold + '±¶';
+        var info = 'the error rate rasie up' + threshold*100 + '%';
         var userlist = '';
         if (result) {
             result.data.forEach(function (ele, index) {
@@ -79,7 +79,7 @@ function sendWarn(id, threshold) {
 }
 
 /**
- * ·â×°µÄhttpÇëÇó
+ * å°è£…çš„httpè¯·æ±‚
  * @param url
  * @param callback
  */
@@ -98,7 +98,7 @@ function httpGet(url, callback) {
 }
 
 /**
- * Í¨¹ıid»ñÈ¡ĞèÒª·¢ËÍµÄÓÃ»§ÁĞ±í
+ * é€šè¿‡idè·å–éœ€è¦å‘é€çš„ç”¨æˆ·åˆ—è¡¨
  * @param id
  * @param callback
  */
@@ -113,7 +113,7 @@ function getUserList(id,callback) {
 }
 
 /**
- * Í¨¹ıid»ñÈ¡Ô¤¾¯µÄ¼ì²é·§Öµ
+ * é€šè¿‡idè·å–é¢„è­¦çš„æ£€æŸ¥é˜€å€¼
  * @param id
  * @param callback
  */
@@ -129,7 +129,7 @@ function getThreshold(id, callback) {
 }
 
 /**
- * ¾¯¸æ¼ì²é£¬ÊÇ·ñĞèÒª·¢ËÍ¸æ¾¯
+ * è­¦å‘Šæ£€æŸ¥ï¼Œæ˜¯å¦éœ€è¦å‘é€å‘Šè­¦
  */
 
 function warnCheck() {
