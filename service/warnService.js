@@ -133,8 +133,9 @@ function warnCheck() {
             logger.warn('num is wrong,the hisNum : ' + hisNum + '  the num is :' + num);
             return;
         } else {
-            var rate = hisNum != 0 ? (num - hisNum) / hisNum : num;
-            logger.info('the rate is '+rate);
+            logger.info('hisnum is ' + hisNum + 'num is' + num);
+            var rate = hisNum != 0 ? ((num - hisNum) / hisNum) : num;
+            logger.info('the rate is ' + rate);
             getThreshold(id, function (threshold) {
                 if (rate > threshold) {
                     sendWarn(id, threshold);
