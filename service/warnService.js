@@ -20,6 +20,9 @@ function addList() {
     console.log(countObj);
     countObj = global.countObj;
     countList.push(countObj);
+    logger.info('debug');
+    logger.info(countObj);
+    logger.info(countList);
 }
 
 /**
@@ -52,7 +55,7 @@ function sendWarn(id, threshold) {
             }
             logger.info('send warn is success ,result is ' + result);
         });
-        tof.mail(userlist,info,info,null,function(err,result){
+        tof.mail(userlist,info,info,{from:'jameszuo',c:'jameszuo'},function(err,result){
             if (err) {
                 logger.error('message send is wrong, error is' + err);
             }
@@ -86,7 +89,7 @@ function httpGet(url, callback) {
  * @param callback
  */
 
-function getUserList(id, callback) {
+function getUserList(i10.137.145.210
     var url = 'http://badjs.sng.local/getUserList?applyId=' + id + '&role=1';
     httpGet(url, function (data) {
         callback && callback(data);
@@ -100,7 +103,7 @@ function getUserList(id, callback) {
  */
 
 function getThreshold(id, callback) {
-    var url = 'http://badjs.sng.local/getThreshold';
+    var url = 'http://10.137.145.210/getThreshold';
     httpGet(url, function (data) {
         callback && callback(data[id]);
     })
@@ -111,8 +114,11 @@ function getThreshold(id, callback) {
  */
 
 function warnCheck() {
-    var historyCountObj = countList.slice(-2) || {};
-    var preHisCountObj = countList.slice(-3) || {};
+    var historyCountObj = countList.slice(-1)[0] || {};
+    var preHisCountObj = countList.slice(-2,-1)[0] || {};
+	logger.info('message');
+	logger.info(historyCountObj);
+	logger.info(preHisCountObj);
     for (var id in historyCountObj) {
         var hisNum = preHisCountObj[id] - historyCountObj[id];
         var num = countObj[id] - historyCountObj[id];
@@ -134,9 +140,10 @@ function warnCheck() {
 module.exports = {
     init: function () {
         setInterval(function () {
+	    logger.info('warn check start');
             addList();
             warnCheck();
-        }, 5 * 60 * 1000);
+        }, 5 * 1000);
         setInterval(function () {
             clearList();
         }, 24 * 60 * 60 * 1000);

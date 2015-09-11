@@ -131,7 +131,7 @@ console.log(global.countObj);
 clearList();
 console.log(countList);
 
-tof.mail('homkerliu',info,info,null,function(err,result){
+tof.mail('homkerliu','test','test',{from:'homkerliu',cc:'homkerliu'},function(err,result){
     if (err) {
         logger.error('message send is wrong, error is' + err);
     }
