@@ -55,7 +55,7 @@ function clearList() {
 function sendWarn(id, threshold) {
     logger.info('send warn is start');
     getUserList(id, function (result) {
-        var info = '五分钟内错误上报量同比增幅超过' + threshold + '倍';
+        var info = 'the error rate rasie up' + threshold*100 + '%';
         var userlist = '';
         if (result) {
             result.data.forEach(function (ele, index) {
