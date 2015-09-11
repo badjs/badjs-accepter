@@ -103,7 +103,7 @@ function httpGet(url, callback) {
  * @param callback
  */
 
-function getUserList(id) {
+function getUserList(id,callback) {
     var url = 'http://10.137.145.210/getUserList?applyId=' + id + '&role=1';
     httpGet(url, function (data) {
         logger.info('success');
@@ -134,13 +134,13 @@ function getThreshold(id, callback) {
 
 function warnCheck() {
     var countObj = clone(global.countObj),
-        historyCountObj = countList.slice(-1)[0] || {},
-        preHisCountObj = countList.slice(-2, -1)[0] || {};
+        historyCountObj = countList.slice(-2, -1)[0] || {},
+        preHisCountObj = countList.slice(-3, -2)[0] || {};
     for (var id in countObj) {
         logger.info('message');
-        logger.info('id'+preHisCountObj[id]);
-        logger.info('id'+historyCountObj[id]);
-        logger.info('id'+countObj[id]);
+        logger.info(id+'id'+preHisCountObj[id]);
+        logger.info(id+'id'+historyCountObj[id]);
+        logger.info(id+'id'+countObj[id]);
         var hisNum = historyCountObj[id] - preHisCountObj[id];
         var num = countObj[id] - historyCountObj[id];
         if (isNaN(num - hisNum)) {
