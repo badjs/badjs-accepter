@@ -89,8 +89,8 @@ function httpGet(url, callback) {
  * @param callback
  */
 
-function getUserList(i10.137.145.210
-    var url = 'http://badjs.sng.local/getUserList?applyId=' + id + '&role=1';
+function getUserList(id){
+    var url = 'http://10.137.145.210/getUserList?applyId=' + id + '&role=1';
     httpGet(url, function (data) {
         callback && callback(data);
     });
