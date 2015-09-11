@@ -133,7 +133,7 @@ function getThreshold(id, callback) {
  */
 
 function warnCheck() {
-    var countObj = global.countObj,
+    var countObj = clone(global.countObj),
         historyCountObj = countList.slice(-1)[0] || {},
         preHisCountObj = countList.slice(-2, -1)[0] || {};
     for (var id in countObj) {
