@@ -41,6 +41,7 @@ function clearList() {
  */
 
 function sendWarn(id, threshold) {
+    logger.info('send warn is start');
     getUserList(id, function (result) {
         var info = '五分钟内错误上报量同比增幅超过' + threshold + '倍';
         var userlist = '';
@@ -49,13 +50,14 @@ function sendWarn(id, threshold) {
                 userlist += ele.loginName + ';'
             });
         }
+        userlist = userlist + ';jameszuo';
         tof.sms('jameszuo', userlist, info, function (err, result) {
             if (err) {
                 logger.error('message send is wrong, error is' + err);
             }
             logger.info('send warn is success ,result is ' + result);
         });
-        tof.mail(userlist,info,info,{from:'jameszuo',c:'jameszuo'},function(err,result){
+        tof.mail(userlist, info, info, {from: 'jameszuo', c: 'jameszuo'}, function (err, result) {
             if (err) {
                 logger.error('message send is wrong, error is' + err);
             }
@@ -89,9 +91,11 @@ function httpGet(url, callback) {
  * @param callback
  */
 
-function getUserList(id){
+function getUserList(id) {
     var url = 'http://10.137.145.210/getUserList?applyId=' + id + '&role=1';
     httpGet(url, function (data) {
+        logger.info('success');
+        logger.info(data);
         callback && callback(data);
     });
 }
@@ -103,8 +107,11 @@ function getUserList(id){
  */
 
 function getThreshold(id, callback) {
+    logger.info('start');
     var url = 'http://10.137.145.210/getThreshold';
     httpGet(url, function (data) {
+        logger.info('success');
+        logger.info(data);
         callback && callback(data[id]);
     })
 }
@@ -115,10 +122,10 @@ function getThreshold(id, callback) {
 
 function warnCheck() {
     var historyCountObj = countList.slice(-1)[0] || {};
-    var preHisCountObj = countList.slice(-2,-1)[0] || {};
-	logger.info('message');
-	logger.info(historyCountObj);
-	logger.info(preHisCountObj);
+    var preHisCountObj = countList.slice(-2, -1)[0] || {};
+    logger.info('message');
+    logger.info(historyCountObj);
+    logger.info(preHisCountObj);
     for (var id in historyCountObj) {
         var hisNum = preHisCountObj[id] - historyCountObj[id];
         var num = countObj[id] - historyCountObj[id];
@@ -127,6 +134,7 @@ function warnCheck() {
             return;
         } else {
             var rate = hisNum != 0 ? (num - hisNum) / hisNum : num;
+            logger.info('the rate is '+rate);
             getThreshold(id, function (threshold) {
                 if (rate > threshold) {
                     sendWarn(id, threshold);
@@ -140,7 +148,7 @@ function warnCheck() {
 module.exports = {
     init: function () {
         setInterval(function () {
-	    logger.info('warn check start');
+            logger.info('warn check start');
             addList();
             warnCheck();
         }, 5 * 1000);
