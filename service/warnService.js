@@ -138,9 +138,9 @@ function warnCheck() {
         preHisCountObj = countList.slice(-2, -1)[0] || {};
     for (var id in countObj) {
         logger.info('message');
-        logger.info(preHisCountObj[id]);
-        logger.info(historyCountObj[id]);
-        logger.info(countObj[id]);
+        logger.info('id'+preHisCountObj[id]);
+        logger.info('id'+historyCountObj[id]);
+        logger.info('id'+countObj[id]);
         var hisNum = historyCountObj[id] - preHisCountObj[id];
         var num = countObj[id] - historyCountObj[id];
         if (isNaN(num - hisNum)) {
