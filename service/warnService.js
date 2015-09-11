@@ -17,10 +17,10 @@ var countList = [];
  * @param myObj
  * @returns {*}
  */
-function clone(myObj){
-    if(typeof(myObj) != 'object' || myObj == null) return myObj;
+function clone(myObj) {
+    if (typeof(myObj) != 'object' || myObj == null) return myObj;
     var newObj = new Object();
-    for(var i in myObj){
+    for (var i in myObj) {
         newObj[i] = clone(myObj[i]);
     }
     return newObj;
@@ -141,7 +141,7 @@ function warnCheck() {
         logger.info(preHisCountObj[id]);
         logger.info(historyCountObj[id]);
         logger.info(countObj[id]);
-        var hisNum = preHisCountObj[id] - historyCountObj[id];
+        var hisNum = historyCountObj[id] - preHisCountObj[id];
         var num = countObj[id] - historyCountObj[id];
         if (isNaN(num - hisNum)) {
             logger.warn('num is wrong,the hisNum : ' + hisNum + '  the num is :' + num);
