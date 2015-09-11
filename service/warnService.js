@@ -166,7 +166,7 @@ module.exports = {
             logger.info('warn check start');
             addList();
             warnCheck();
-        }, 5 * 1000);
+        }, 5 * 60 *1000);
         setInterval(function () {
             clearList();
         }, 24 * 60 * 60 * 1000);
