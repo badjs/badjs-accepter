@@ -150,9 +150,9 @@ function warnCheck() {
             var rate = hisNum != 0 ? ((num - hisNum) / hisNum) : num;
             logger.info('the rate is ' + rate);
             getThreshold(id, function (threshold) {
-                if (rate > threshold) {
-                    sendWarn(id, threshold);
-                }
+                //if (rate > threshold) {
+                //    sendWarn(id, threshold);
+                //}
             });
         }
     }
