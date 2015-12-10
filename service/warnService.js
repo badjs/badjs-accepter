@@ -1,6 +1,6 @@
 /**
  * @author homker
- *Í³¼ÆÎå·ÖÖÓÄÚµÄÊý¾Ý±ä»¯Á¿ºÍÎå·ÖÖÓÖ®Ç°µÄÊý¾Ý±ä»¯Á¿µÄ±ä»¯·ù¶È
+ *Í³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½Ý±ä»¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ä»¯ï¿½ï¿½ï¿½Ä±ä»¯ï¿½ï¿½ï¿½ï¿½
  */
 
 
@@ -13,7 +13,7 @@ var log4js = require('log4js'),
 var countList = [],
     countObj = {};
 /**
- * ½«È«¾Ö¶ÔÏóÌí¼Óµ½¶ÓÁÐÖÐ
+ * ï¿½ï¿½È«ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 
 function addList() {
@@ -22,7 +22,7 @@ function addList() {
 }
 
 /**
- * Çå¿Õ»º´æ¶ÓÁÐ
+ * ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 
 function clearList() {
@@ -31,32 +31,32 @@ function clearList() {
     global.countObj = {};
 }
 /**
- * ¸ù¾ÝidÀ´»ñÈ¡ºÍ·¢ËÍ¸æ¾¯
+ * ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½È¡ï¿½Í·ï¿½ï¿½Í¸æ¾¯
  * @param id
  * @param threshold
  */
 
 function sendWarn(id, threshold) {
     getUserList(id, function (result) {
-        var info = 'Îå·ÖÖÓÄÚ´íÎóÉÏ±¨Á¿Í¬±ÈÔö·ù³¬¹ý' + threshold + '±¶';
+        var info = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' + threshold + 'ï¿½ï¿½';
         var userlist = '';
         if (result) {
             result.data.forEach(function (ele, index) {
                 userlist += ele.loginName + ';'
             });
         }
-        tof.sms('', userlist, info, function (err, result) {
-            if (err) {
-                logger.error('message send is wrong, error is' + err);
-                return;
-            }
-            logger.info('send warn is success ,result is ' + result);
-        })
+        //tof.sms('', userlist, info, function (err, result) {
+        //    if (err) {
+        //        logger.error('message send is wrong, error is' + err);
+        //        return;
+        //    }
+        //    logger.info('send warn is success ,result is ' + result);
+        //})
     })
 }
 
 /**
- * ·â×°µÄhttpÇëÇó
+ * ï¿½ï¿½×°ï¿½ï¿½httpï¿½ï¿½ï¿½ï¿½
  * @param url
  * @param callback
  */
@@ -75,7 +75,7 @@ function httpGet(url, callback) {
 }
 
 /**
- * Í¨¹ýid»ñÈ¡ÐèÒª·¢ËÍµÄÓÃ»§ÁÐ±í
+ * Í¨ï¿½ï¿½idï¿½ï¿½È¡ï¿½ï¿½Òªï¿½ï¿½ï¿½Íµï¿½ï¿½Ã»ï¿½ï¿½Ð±ï¿½
  * @param id
  * @param callback
  */
@@ -88,7 +88,7 @@ function getUserList(id, callback) {
 }
 
 /**
- * Í¨¹ýid»ñÈ¡Ô¤¾¯µÄ¼ì²é·§Öµ
+ * Í¨ï¿½ï¿½idï¿½ï¿½È¡Ô¤ï¿½ï¿½ï¿½Ä¼ï¿½é·§Öµ
  * @param id
  * @param callback
  */
@@ -101,7 +101,7 @@ function getThreshold(id, callback) {
 }
 
 /**
- * ¾¯¸æ¼ì²é£¬ÊÇ·ñÐèÒª·¢ËÍ¸æ¾¯
+ * ï¿½ï¿½ï¿½ï¿½ï¿½é£¬ï¿½Ç·ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Í¸æ¾¯
  */
 
 function warnCheck() {
